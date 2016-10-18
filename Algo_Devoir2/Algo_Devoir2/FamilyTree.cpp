@@ -80,7 +80,7 @@ std::list<Node<Person>*> FamilyTree::printLineage_inOrder(Node<Person>* node, No
 			*found = true;
 		}
 		if (!*found) {
-			list = printLineage_inOrder(node->getMother(), ancestor, list, found);
+			list = printLineage_inOrder(node->getMother(), ancestor, list,found);
 		}
 		if (*found) {
 			list.push_back(node);
@@ -89,5 +89,78 @@ std::list<Node<Person>*> FamilyTree::printLineage_inOrder(Node<Person>* node, No
 	return list;
 }
 
+std::list<Node<Person>*> FamilyTree::printLineage_preOrder(Node<Person>* node, Node<Person>* ancestor, std::list<Node<Person>*>list, bool* found)
+{
+	if (node != NULL) {
+		if (node->getData() == ancestor->getData()) {
+			list.push_back(node);
+			*found = true;
+		}
+		if (!*found) {
+			list = printLineage_preOrder(node->getFather(), ancestor, list, found);
+		}
+		if (!*found) {
+			list = printLineage_preOrder(node->getMother(), ancestor, list, found);
+		}
+		if (*found) {
+			list.push_back(node);
+		}
+	}
+	return list;
+}
+
+std::list<Node<Person>*> FamilyTree::printLineage_postOrder(Node<Person>* node, Node<Person>* ancestor, std::list<Node<Person>*>list, bool* found)
+{
+	if (node != NULL) {
+		if (!*found) {
+			list = printLineage_preOrder(node->getFather(), ancestor, list, found);
+		}
+		if (!*found) {
+			list = printLineage_preOrder(node->getMother(), ancestor, list, found);
+		}
+		if (node->getData() == ancestor->getData()) {
+			list.push_back(node);
+			*found = true;
+		}
+		if (*found) {
+			list.push_back(node);
+		}
+	}
+	return list;
+}
+
+void FamilyTree::listSameEyeColor(Node<Person>* node, EyeColor color, std::list<Node<Person>*>* list)
+{
+	if (node != NULL) {
+		listSameEyeColor(node->getFather(), color, list);
+		if (node->getData().getEyeColor() == color) {
+			list->push_back(node);
+		}
+		listSameEyeColor(node->getMother(), color, list);
+	}
+	
+}
+
+void FamilyTree::listAllSameEyeColor(EyeColor color, std::list<Node<Person>*>* list)
+{
+	this->listSameEyeColor(this->root, color, list);
+
+}
+
+float FamilyTree::getAverageAge()
+{
+	int sum = getSumOfAges(this->root);
+	return (float)sum / (float)this->getSize();
+}
+
+int FamilyTree::getSumOfAges(Node<Person>* node)
+{
+	if (node == NULL) {
+		return 0;
+	}
+	else {
+		return node->getData().getAge() + getSumOfAges(node->getFather()) + getSumOfAges(node->getMother());
+	}
+}
 
 

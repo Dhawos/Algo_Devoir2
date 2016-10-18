@@ -35,8 +35,11 @@ EyeColor Person::getEyeColor() {
 	return this->eyeColor;
 }
 
-std::ostream & operator<<(std::ostream & stream, const Person person)
+int Person::getAge()
 {
-	stream << "Last Name : " << person.lastName << " -- First Name : " << person.firstName << " -- Year of birth : " << person.birthYear << " -- Eye Color : " << person.eyeColor << std::endl;
-	return stream;
+	time_t curTime = time(NULL);
+	struct tm timeinfo;
+	localtime_s(&timeinfo, &curTime);
+	int year = timeinfo.tm_year + 1900;
+	return year - birthYear;
 }
