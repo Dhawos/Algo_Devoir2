@@ -35,6 +35,11 @@ bool FamilyTree::isLeaf(Node<Person>* node)
 	}
 }
 
+int FamilyTree::getSize()
+{
+	return nbNodes;
+}
+
 int FamilyTree::getHeight(Node<Person>* node)
 {
 	if (node == NULL) {

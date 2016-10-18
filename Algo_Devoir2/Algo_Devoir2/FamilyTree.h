@@ -13,6 +13,7 @@ public:
 	virtual ~FamilyTree();
 	bool isEmpty();
 	bool isLeaf(Node<Person>* node); //Tells if a node is a Leaf
+	int getSize();
 	int getHeight(Node<Person>* node); //Returns the height of a node, and the height of the tree if no argument is provided
 	void attachMother(Node<Person>* node, Node<Person>* mother); //Adds a node to the tree as a Mother
 	void attachFather(Node<Person>* node, Node<Person>* father); //Adds a node to the tree as a Father
