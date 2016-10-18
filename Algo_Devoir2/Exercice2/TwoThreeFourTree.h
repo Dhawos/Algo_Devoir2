@@ -47,7 +47,8 @@ inline void TwoThreeFourTree<T>::addNode(const TwoThreeFourNode<T> & node)
 		//First we have to find where to insert the node
 		TwoThreeFourNode<T> currentNode = this->root;
 		if (currentNode.getChildren().size() == 4) {
-
+			TwoThreeFourNode<T>* = currentNode.children.at(2);
+			//TODO
 		}
 	}
 }
