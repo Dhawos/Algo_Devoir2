@@ -20,5 +20,9 @@ public:
 	std::list<Node<Person>*> printLineage_inOrder(Node<Person>* node, Node<Person>* ancestor, std::list<Node<Person>*> list, bool* found); //Affiche la descendance d'un noeud
 	std::list<Node<Person>*> printLineage_preOrder(Node<Person>* node, Node<Person>* ancestor, std::list<Node<Person>*> list, bool* found); //Affiche la descendance d'un noeud
 	std::list<Node<Person>*> printLineage_postOrder(Node<Person>* node, Node<Person>* ancestor, std::list<Node<Person>*> list, bool* found); //Affiche la descendance d'un noeud
+	void listSameEyeColor(Node<Person>* node, EyeColor color, std::list<Node<Person>*>* list);
+	void listAllSameEyeColor(EyeColor color, std::list<Node<Person>*>* list);
+	float getAverageAge(); //Returns the average age of all people in the tree
+	int getSumOfAges(Node<Person>* node); //Retunrs the sum of the ages from a given node
 };
 

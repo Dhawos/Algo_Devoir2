@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "Person.h"
 
-
 Person::Person(string lastName, string firstName, int birthYear, EyeColor eyecolor)
 {
 	this->lastName = lastName;
@@ -29,4 +28,13 @@ int Person::getBirthYeah() {
 
 EyeColor Person::getEyeColor() {
 	return this->eyeColor;
+}
+
+int Person::getAge()
+{
+	time_t curTime = time(NULL);
+	struct tm timeinfo;
+	localtime_s(&timeinfo, &curTime);
+	int year = timeinfo.tm_year + 1900;
+	return year - birthYear;
 }

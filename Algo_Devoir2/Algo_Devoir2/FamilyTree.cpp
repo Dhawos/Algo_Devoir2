@@ -130,4 +130,38 @@ std::list<Node<Person>*> FamilyTree::printLineage_postOrder(Node<Person>* node, 
 	return list;
 }
 
+void FamilyTree::listSameEyeColor(Node<Person>* node, EyeColor color, std::list<Node<Person>*>* list)
+{
+	if (node != NULL) {
+		listSameEyeColor(node->getFather(), color, list);
+		if (node->getData().getEyeColor() == color) {
+			list->push_back(node);
+		}
+		listSameEyeColor(node->getMother(), color, list);
+	}
+	
+}
+
+void FamilyTree::listAllSameEyeColor(EyeColor color, std::list<Node<Person>*>* list)
+{
+	this->listSameEyeColor(this->root, color, list);
+
+}
+
+float FamilyTree::getAverageAge()
+{
+	int sum = getSumOfAges(this->root);
+	return (float)sum / (float)this->getSize();
+}
+
+int FamilyTree::getSumOfAges(Node<Person>* node)
+{
+	if (node == NULL) {
+		return 0;
+	}
+	else {
+		return node->getData().getAge() + getSumOfAges(node->getFather()) + getSumOfAges(node->getMother());
+	}
+}
+
 
