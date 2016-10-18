@@ -2,6 +2,10 @@
 #include "Person.h"
 
 
+Person::Person()
+{
+}
+
 Person::Person(string lastName, string firstName, int birthYear, EyeColor eyecolor)
 {
 	this->lastName = lastName;
@@ -29,4 +33,10 @@ int Person::getBirthYeah() {
 
 EyeColor Person::getEyeColor() {
 	return this->eyeColor;
+}
+
+std::ostream & operator<<(std::ostream & stream, const Person person)
+{
+	stream << "Last Name : " << person.lastName << " -- First Name : " << person.firstName << " -- Year of birth : " << person.birthYear << " -- Eye Color : " << person.eyeColor << std::endl;
+	return stream;
 }
