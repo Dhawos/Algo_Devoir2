@@ -52,7 +52,7 @@ int FamilyTree::getHeight(Node<Person>* node)
 
 void FamilyTree::attachMother(Node<Person>* node, Node<Person>* mother)
 {
-	if (node != NULL && mother !=NULL) {
+	if (node != NULL && node->getMother() == NULL && mother != NULL) {
 		node->setMother(mother);
 		this->nbNodes++;
 	}
@@ -63,8 +63,8 @@ void FamilyTree::attachMother(Node<Person>* node, Node<Person>* mother)
 
 void FamilyTree::attachFather(Node<Person>* node, Node<Person>* father)
 {
-	if (node != NULL && father == NULL) {
-		node->setMother(father);
+	if (node != NULL && node->getFather() == NULL && father != NULL) {
+		node->setFather(father);
 		this->nbNodes++;
 	}
 	else {
@@ -75,9 +75,8 @@ void FamilyTree::attachFather(Node<Person>* node, Node<Person>* father)
 std::list<Node<Person>*> FamilyTree::printLineage_inOrder(Node<Person>* node, Node<Person>* ancestor, std::list<Node<Person>*>list, bool* found)
 {
 	if (node != NULL) {
-		list = printLineage_inOrder(node->getFather(),ancestor,list,found);
+		list = printLineage_inOrder(node->getFather(),ancestor,list, found);
 		if (node->getData() == ancestor->getData()){
-			list.push_back(node);
 			*found = true;
 		}
 		if (!*found) {

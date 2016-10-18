@@ -1,5 +1,7 @@
 #pragma once
 #include <list>
+#include <iostream>
+using std::cout;
 using std::list;
 
 template <typename T>
@@ -11,7 +13,7 @@ private:
 	Node<T>* mother;
 public:
 	
-	Node(T data, T* father = NULL, T* mother = NULL)
+	Node(T data, Node<T>* father = NULL, Node<T>* mother = NULL)
 	{
 		this->data = data;
 		this->father = father;
@@ -45,6 +47,11 @@ public:
 
 	Node<T>* getMother() {
 		return this->mother;
+	}
+
+	template <typename U> friend std::ostream& operator<<(std::ostream& stream, const Node<U> node) {
+		stream << node.data;
+		return stream;
 	}
 };
 

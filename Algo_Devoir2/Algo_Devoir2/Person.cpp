@@ -1,6 +1,11 @@
 #include "stdafx.h"
 #include "Person.h"
 
+
+Person::Person()
+{
+}
+
 Person::Person(string lastName, string firstName, int birthYear, EyeColor eyecolor)
 {
 	this->lastName = lastName;

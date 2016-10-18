@@ -2,6 +2,7 @@
 #include "Node.h"
 #include "Person.h"
 #include <list>
+
 class FamilyTree
 {
 private:
