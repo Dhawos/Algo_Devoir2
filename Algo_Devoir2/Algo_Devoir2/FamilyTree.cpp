@@ -75,13 +75,13 @@ void FamilyTree::attachFather(Node<Person>* node, Node<Person>* father)
 std::list<Node<Person>*> FamilyTree::printLineage_inOrder(Node<Person>* node, Node<Person>* ancestor, std::list<Node<Person>*>list, bool* found)
 {
 	if (node != NULL) {
-		list = printLineage_inOrder(node->getFather(),ancestor,list);
+		list = printLineage_inOrder(node->getFather(),ancestor,list,found);
 		if (node->getData() == ancestor->getData()){
 			list.push_back(node);
 			*found = true;
 		}
 		if (!*found) {
-			list = printLineage_inOrder(node->getMother(), ancestor, list);
+			list = printLineage_inOrder(node->getMother(), ancestor, list,found);
 		}
 		if (*found) {
 			list.push_back(node);
@@ -90,5 +90,44 @@ std::list<Node<Person>*> FamilyTree::printLineage_inOrder(Node<Person>* node, No
 	return list;
 }
 
+std::list<Node<Person>*> FamilyTree::printLineage_preOrder(Node<Person>* node, Node<Person>* ancestor, std::list<Node<Person>*>list, bool* found)
+{
+	if (node != NULL) {
+		if (node->getData() == ancestor->getData()) {
+			list.push_back(node);
+			*found = true;
+		}
+		if (!*found) {
+			list = printLineage_preOrder(node->getFather(), ancestor, list, found);
+		}
+		if (!*found) {
+			list = printLineage_preOrder(node->getMother(), ancestor, list, found);
+		}
+		if (*found) {
+			list.push_back(node);
+		}
+	}
+	return list;
+}
+
+std::list<Node<Person>*> FamilyTree::printLineage_postOrder(Node<Person>* node, Node<Person>* ancestor, std::list<Node<Person>*>list, bool* found)
+{
+	if (node != NULL) {
+		if (!*found) {
+			list = printLineage_preOrder(node->getFather(), ancestor, list, found);
+		}
+		if (!*found) {
+			list = printLineage_preOrder(node->getMother(), ancestor, list, found);
+		}
+		if (node->getData() == ancestor->getData()) {
+			list.push_back(node);
+			*found = true;
+		}
+		if (*found) {
+			list.push_back(node);
+		}
+	}
+	return list;
+}
 
 

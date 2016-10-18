@@ -18,7 +18,7 @@ public:
 	void attachMother(Node<Person>* node, Node<Person>* mother); //Adds a node to the tree as a Mother
 	void attachFather(Node<Person>* node, Node<Person>* father); //Adds a node to the tree as a Father
 	std::list<Node<Person>*> printLineage_inOrder(Node<Person>* node, Node<Person>* ancestor, std::list<Node<Person>*> list, bool* found); //Affiche la descendance d'un noeud
-
-
+	std::list<Node<Person>*> printLineage_preOrder(Node<Person>* node, Node<Person>* ancestor, std::list<Node<Person>*> list, bool* found); //Affiche la descendance d'un noeud
+	std::list<Node<Person>*> printLineage_postOrder(Node<Person>* node, Node<Person>* ancestor, std::list<Node<Person>*> list, bool* found); //Affiche la descendance d'un noeud
 };
 
