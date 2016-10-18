@@ -5,7 +5,8 @@
 #include "Person.h"
 #include "FamilyTree.h"
 #include "Node.h"
-using namespace std;
+using std::cout;
+using std::endl;
 
 int main()
 {
@@ -15,15 +16,13 @@ int main()
 	Person pC = Person("ccc", "ccc", 1992, brown);
 	Person pD = Person("ddd", "ddd", 1993, blue);
 	Person pE = Person("eee", "eee", 1994, blue);
-	Person pF = Person("fff", "fff", 1995, blue);
-	Person pG = Person("ggg", "ggg", 1996, blue);
+	Person pF = Person("fff", "fff", 1995, gray);
+	Person pG = Person("ggg", "ggg", 1996, brown);
 	Person pH = Person("hhh", "hhh", 1997, blue);
 	Person pI = Person("iii", "iii", 1998, blue);
 	Person pJ = Person("jjj", "jjj", 1999, blue);
 	Person pK = Person("kkk", "kkk", 2000, blue);
 	Person pL = Person("lll", "lll", 2001, blue);
-
-	std::cout << pA << std::endl;
 
 	Node<Person> A = Node<Person>(pA);
 	Node<Person> B = Node<Person>(pB);
@@ -56,8 +55,21 @@ int main()
 	std::list<Node<Person>*> postOrderList = std::list<Node<Person>*>();
 	bool found = false;
 	inorderList = familyTree01.printLineage_inOrder(&A, &G, inorderList, &found);
-
+	found = false;
+	preOrderList = familyTree01.printLineage_preOrder(&A, &G, preOrderList, &found);
+	found = false;
+	postOrderList = familyTree01.printLineage_postOrder(&A, &G, postOrderList, &found);
 	for(Node<Person>* person : inorderList)
+	{
+		std::cout << *person << std::endl;
+	}
+	std::cout << "---------------------" << std::endl;
+	for (Node<Person>* person : preOrderList)
+	{
+		std::cout << *person << std::endl;
+	}
+	std::cout << "---------------------" << std::endl;
+	for (Node<Person>* person : postOrderList)
 	{
 		std::cout << *person << std::endl;
 	}

@@ -43,3 +43,22 @@ int Person::getAge()
 	int year = timeinfo.tm_year + 1900;
 	return year - birthYear;
 }
+
+std::ostream & operator<<(std::ostream & stream, const Person person)
+{
+	stream << " Last name : " << person.lastName << " -- First name : " << person.firstName << " -- Year of Birth : " << person.birthYear << " -- Eye color : ";
+		if (person.eyeColor == 0) {
+			stream << "brown";
+		}
+		if (person.eyeColor == 1) {
+			stream << "blue";
+		}
+		if (person.eyeColor == 2) {
+			stream << "green";
+		}
+		if (person.eyeColor == 3) {
+			stream << "gray";
+		}
+		stream << std::endl;
+	return stream;
+}
