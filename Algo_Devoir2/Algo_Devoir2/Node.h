@@ -6,16 +6,15 @@ class Node
 {
 private:
 	T data;
-	list<T*> children;
-	T* father;
+	Node<T>* father;
+	Node<T>* mother;
 public:
 	
-
-	Node(T data, T* father)
+	Node(T data, T* father = NULL, T* mother = NULL)
 	{
 		this->data = data;
 		this->father = father;
-		this->children = new list();
+		this->mother = mother;
 	}
 
 	virtual ~Node()
@@ -31,24 +30,20 @@ public:
 		return this->data;
 	}
 
-	void setFather(T* father) {
+	void setFather(Node<T>* father) {
 		this->father = father;
 	}
 
-	T* getFather() {
-		return this->father
+	Node<T>* getFather() {
+		return this->father;
 	}
 
-	void addChild(T* child) {
-		this->children.push_back(child);
+	void setMother(Node<T>* mother) {
+		this->mother = mother;
 	}
 
-	void removeChild(T* child) {
-		this->children.remove(child);
-	}
-
-	list<T*> getChildren() {
-		return this->children;
+	Node<T>* getMother() {
+		return this->mother;
 	}
 };
 

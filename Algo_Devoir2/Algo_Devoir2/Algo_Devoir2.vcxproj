@@ -145,6 +145,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="FamilyTree.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="Person.h" />
     <ClInclude Include="stdafx.h" />
@@ -152,6 +153,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Algo_Devoir2.cpp" />
+    <ClCompile Include="FamilyTree.cpp" />
     <ClCompile Include="Person.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
