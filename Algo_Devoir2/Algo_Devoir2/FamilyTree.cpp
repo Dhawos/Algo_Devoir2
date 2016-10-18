@@ -72,18 +72,22 @@ void FamilyTree::attachFather(Node<Person>* node, Node<Person>* father)
 	}
 }
 
-void FamilyTree::printLineage_inOrder(Node<Person>* node, Node<Person>* ancestor)
+std::list<Node<Person>*> FamilyTree::printLineage_inOrder(Node<Person>* node, Node<Person>* ancestor, std::list<Node<Person>*>list, bool* found)
 {
 	if (node != NULL) {
-		std::stack<Node<Person>*> stack = std::stack<Node<Person>*>();
-		bool found = false;
-		stack.push(node);
-		printLineage_inOrder(node->getFather(),ancestor);
-		if (node->getData() == ancestor->getData()) {
-			found = true;
+		list = printLineage_inOrder(node->getFather(),ancestor,list);
+		if (node->getData() == ancestor->getData()){
+			list.push_back(node);
+			*found = true;
 		}
-		printLineage_inOrder(node->getMother(),ancestor);
+		if (!*found) {
+			list = printLineage_inOrder(node->getMother(), ancestor, list);
+		}
+		if (*found) {
+			list.push_back(node);
+		}
 	}
+	return list;
 }
 
 
