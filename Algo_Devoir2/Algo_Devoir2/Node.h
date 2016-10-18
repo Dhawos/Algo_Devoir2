@@ -1,6 +1,7 @@
 #pragma once
 #include <list>
 using std::list;
+
 template <typename T>
 class Node
 {
