@@ -19,11 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{EE82387E-9634-4F20-8B7A-CF652B832D41}</ProjectGuid>
+    <ProjectGuid>{7A6D1041-2C3D-4594-8275-406CF628213B}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>Algo_Devoir2</RootNamespace>
+    <RootNamespace>Exercice2</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
-    <ProjectName>Exercice1</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -146,22 +145,20 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="FamilyTree.h" />
-    <ClInclude Include="Node.h" />
-    <ClInclude Include="Person.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="TwoThreeFourNode.h" />
+    <ClInclude Include="TwoThreeFourTree.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Algo_Devoir2.cpp" />
-    <ClCompile Include="FamilyTree.cpp" />
-    <ClCompile Include="Person.cpp" />
+    <ClCompile Include="Exercice2.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="TwoThreeFourNode.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
