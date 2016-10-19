@@ -16,6 +16,9 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
+    <Text Include="..\..\..\..\..\Documents\Cours\Structure de données avancées et leurs algorithmes\legoPieces.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -30,12 +33,18 @@
     <ClInclude Include="TwoThreeFourNode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="LegoPart.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Exercice2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LegoPart.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
