@@ -19,9 +19,9 @@ int main()
 	Person pF = Person("fff", "fff", 1995, gray);
 	Person pG = Person("ggg", "ggg", 1996, brown);
 	Person pH = Person("hhh", "hhh", 1997, blue);
-	Person pI = Person("iii", "iii", 1998, blue);
+	Person pI = Person("iii", "iii", 1998, brown);
 	Person pJ = Person("jjj", "jjj", 1999, blue);
-	Person pK = Person("kkk", "kkk", 2000, blue);
+	Person pK = Person("kkk", "kkk", 2000, brown);
 	Person pL = Person("lll", "lll", 2001, blue);
 
 	Node<Person> A = Node<Person>(pA);
@@ -59,36 +59,51 @@ int main()
 	preOrderList = familyTree01.printLineage_preOrder(&A, &G, preOrderList, &found);
 	found = false;
 	postOrderList = familyTree01.printLineage_postOrder(&A, &G, postOrderList, &found);
+	
+	std::cout << "inOrder Test" << std::endl;
 	for(Node<Person>* person : inorderList)
 	{
 		std::cout << *person << std::endl;
 	}
+
 	std::cout << "---------------------" << std::endl;
+	std::cout << "preOrder Test" << std::endl;
 	for (Node<Person>* person : preOrderList)
 	{
 		std::cout << *person << std::endl;
 	}
+
 	std::cout << "---------------------" << std::endl;
+	std::cout << "postOrder Test" << std::endl;
 	for (Node<Person>* person : postOrderList)
 	{
 		std::cout << *person << std::endl;
 	}
+
+	std::cout << "---------------------" << std::endl;
+	std::cout << "Average Age Test" << std::endl;
+	std::cout << "average Age : " << familyTree01.getAverageAge() << std::endl;
+
+	std::cout << "---------------------" << std::endl;
+	std::cout << "list Eye Color Test" << std::endl;
+	std::list<Node<Person>*> listEyeColor = std::list<Node<Person>*>();
+	familyTree01.listSameEyeColor(&B, blue, &listEyeColor);
+	std::cout << "ancestors of " << B << " with the color blue" << std::endl;
+	for (Node<Person>* person : listEyeColor)
+	{
+		std::cout << *person << std::endl;
+	}
+
+	std::cout << "---------------------" << std::endl;
+	std::cout << "list All Same Eye Color Test" << std::endl;
+	std::list<Node<Person>*> listAllSameEyeColor = std::list<Node<Person>*>();
+	familyTree01.listAllSameEyeColor(brown, &listAllSameEyeColor);
+	std::cout << "persons in the family tree with the color brown" << std::endl;
+	for (Node<Person>* person : listAllSameEyeColor)
+	{
+		std::cout << *person << std::endl;
+	}
 	system("pause");
-	//-----------------------------------------------------//
-	/*
-	Node<Person> A2 = Node<Person>(A);
-	Node<Person> B2 = Node<Person>(B);
-	Node<Person> C2 = Node<Person>(C);
-	Node<Person> D2 = Node<Person>(D);
-	Node<Person> E2 = Node<Person>(E);
-	Node<Person> F2 = Node<Person>(F);
-	Node<Person> G2 = Node<Person>(G);
-	Node<Person> H2 = Node<Person>(H);
-	Node<Person> I2 = Node<Person>(I);
-	Node<Person> J2 = Node<Person>(J);
-	Node<Person> K2 = Node<Person>(K);
-	Node<Person> L2 = Node<Person>(L);
-	*/
     return 0;
 }
 
