@@ -5,11 +5,12 @@ class TwoThreeFourTree
 {
 private:
 	int nbNodes;
-	TwoThreeFourNode root;
+	TwoThreeFourNode<T> root;
 public:
 	TwoThreeFourTree();
 	~TwoThreeFourTree();
 	bool isEmpty() const;
+	TwoThreeFourNode<T> getRoot();
 	void insertValue(const T &value, TwoThreeFourNode<T> currentNode);
 	void removeValue(const T &);
 	int getNbNodes() const;
@@ -20,7 +21,6 @@ public:
 template<typename T>
 inline TwoThreeFourTree<T>::TwoThreeFourTree()
 {
-	root = NULL;
 	nbNodes = 0;
 }
 
@@ -33,53 +33,59 @@ inline TwoThreeFourTree<T>::~TwoThreeFourTree()
 template<typename T>
 inline bool TwoThreeFourTree<T>::isEmpty() const
 {
-	return root == NULL;
+	return this->getNbNodes() == 0;
 }
 
 template<typename T>
-inline void TwoThreeFourTree<T>::insertValue(const T & value, TwoThreeFourNode<T> currentNode = this->root)
+inline TwoThreeFourNode<T> TwoThreeFourTree<T>::getRoot()
+{
+	return this->root;
+}
+
+template<typename T>
+inline void TwoThreeFourTree<T>::insertValue(const T & value, TwoThreeFourNode<T> currentNode)
 {
 	if (this->isEmpty()) { //Insert as root
 		this->root = TwoThreeFourNode<T>();
-		this->root.getKeys().insert(value);
-		this->nbNodes + 1;
+		this->root.getKeys().push_back(value);
+		this->nbNodes++;
 	}
 	else {
 		//First we have to find where to insert the node
 		if (currentNode.getChildren().size() == 4) {
 			//Removing middle value
 			T middleValue = currentNode.getKeys()[1];
-			currentNode.getKeys().erase[1];
+			currentNode.getKeys().erase(currentNode.getKeys().begin()++);
 			//Splitting remaining node into a pair of 2-nodes
 			TwoThreeFourNode<T> node1 = TwoThreeFourNode<T>();
-			node1.getKeys().insert(currentNode.getKeys()[0]);
+			node1.getKeys().push_back(currentNode.getKeys()[0]);
 			node1.addChild(currentNode.getChildren()[0]);
 			node1.addChild(currentNode.getChildren()[1]);
 			TwoThreeFourNode<T> node2 = TwoThreeFourNode<T>();
-			node2.getKeys().insert(currentNode.getKeys()[1]);
+			node2.getKeys().push_back(currentNode.getKeys()[1]);
 			node2.addChild(currentNode.getChildren()[2]);
 			node2.addChild(currentNode.getChildren()[3]);
 			if (currentNode.isRoot()) {
 				TwoThreeFourNode<T> newRoot = TwoThreeFourNode<T>();
-				newRoot.getKeys().insert(middleValue);
-				newRoot.addChild(node1);
-				newRoot.addChild(node2);
+				newRoot.getKeys().push_back(middleValue);
+				newRoot.addChild(&node1);
+				newRoot.addChild(&node2);
 				currentNode = newRoot;
 				this->root = newRoot;
 			}
 			else {
-				currentNode.getParent().getKeys().insert(middleValue);
+				currentNode.getParent()->getKeys().push_back(middleValue);
 			}
-			this->nbNodes + 1;
+			this->nbNodes++;
 		}
 		//Find the child whose interval contains the value to be inserted
-		TwoThreeFourNode<T> childFound;
-		childFound = currentNode.getChildren()[getNextNodeToVisit(value,currentNode)]
-		if (childFound.isLeaf()) {
-			childFound.getKeys().insert(value);
+		TwoThreeFourNode<T>* childFound;
+		childFound = currentNode.getChildren()[getNextNodeToVisit(value, currentNode)];
+		if (childFound->isLeaf()) {
+			childFound->getKeys().push_back(value);
 		}
 		else {
-			this->insertValue(value, childFound);
+			this->insertValue(value, *childFound);
 		}
 	}
 }
@@ -128,7 +134,7 @@ inline void TwoThreeFourTree<T>::removeValue(const T & value)
 template<typename T>
 inline int TwoThreeFourTree<T>::getNbNodes() const
 {
-	return this->nbNodes
+	return this->nbNodes;
 }
 
 template<typename T>

@@ -34,7 +34,7 @@ void parseText(TwoThreeFourTree<LegoPart> tree)
 		string pieceId = parseParts;
 		string description = parseParts;
 		string category = parseParts;
-		tree.insertValue(LegoPart(pieceId, description, category));
+		tree.insertValue(LegoPart(pieceId, description, category), tree.getRoot());
 		n++;
 	}
 }
