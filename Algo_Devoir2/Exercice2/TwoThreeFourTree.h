@@ -7,19 +7,19 @@ private:
 	int nbNodes;
 	TwoThreeFourNode root;
 public:
-	Arbre();
-	~Arbre();
+	TwoThreeFourTree();
+	~TwoThreeFourTree();
 	bool isEmpty() const;
-	void insertValue(const T value&, TwoThreeFourNode<T> currentNode);
+	void insertValue(const T &value, TwoThreeFourNode<T> currentNode);
 	void removeValue(const T &);
 	const T & max() const;
 	const T & min() const;
 	int getNbNodes() const;
-	bool search(const T &) const;
+	TwoThreeFourNode<T> search(const T &) const;
 };
 
 template<typename T>
-inline TwoThreeFourTree<T>::Arbre()
+inline TwoThreeFourTree<T>::TwoThreeFourTree()
 {
 	root = NULL;
 	nbNodes = 0;
@@ -27,7 +27,7 @@ inline TwoThreeFourTree<T>::Arbre()
 
 
 template<typename T>
-inline TwoThreeFourTree<T>::~Arbre()
+inline TwoThreeFourTree<T>::~TwoThreeFourTree()
 {
 }
 
@@ -38,7 +38,7 @@ inline bool TwoThreeFourTree<T>::isEmpty() const
 }
 
 template<typename T>
-inline void TwoThreeFourTree<T>::insertValue(const T value &, TwoThreeFourNode<T> currentNode = this->root)
+inline void TwoThreeFourTree<T>::insertValue(const T & value, TwoThreeFourNode<T> currentNode = this->root)
 {
 	if (this->isEmpty()) { //Insert as root
 		this->root = TwoThreeFourNode<T>();
@@ -78,26 +78,26 @@ inline void TwoThreeFourTree<T>::insertValue(const T value &, TwoThreeFourNode<T
 		//If this is a 2 node
 		if (currentNode.getChildren().size() == 2) {
 			if (value < currentNode.getKeys()[0]) {
-				childFound = currentNode.getChildren()[0]
+				childFound = currentNode.getChildren()[0];
 			}
-			else if (value > currentNode.getKeys()[0]{
-				childFound = currentNode.getChildren()[1]
+			else if (value > currentNode.getKeys()[0]){
+				childFound = currentNode.getChildren()[1];
 			}
 		}
 		//If this is a 3 node
 		else if (currentNode.getChildren().size() == 3) {
 			if (value < currentNode.getKeys()[0]) {
-				childFound = currentNode.getChildren()[0]
+				childFound = currentNode.getChildren()[0];
 			}
 			else if (value > currentNode.getKeys()[1]){
-				childFound = currentNode.getChildren()[2]
+				childFound = currentNode.getChildren()[2];
 			}
 			else if(value < currentNode.getKeys()[0] && value > currentNode.getKeys()[1]){
-				childFound = currentNode.getChildren()[1]
+				childFound = currentNode.getChildren()[1];
 			}
 		}
 		if (childFound.isLeaf()) {
-			childFound.getKeys().insert(value)
+			childFound.getKeys().insert(value);
 		}
 		else {
 			this->insertValue(value, childFound);
@@ -126,11 +126,68 @@ inline const T & TwoThreeFourTree<T>::min() const
 template<typename T>
 inline int TwoThreeFourTree<T>::getNbNodes() const
 {
-	return 0;
+	return this->nbNodes
 }
 
 template<typename T>
-inline bool TwoThreeFourTree<T>::search(const T &) const
+inline TwoThreeFourNode<T> TwoThreeFourTree<T>::search(const T & value) const
 {
+	TwoThreeFourNode<T> currentNode;
+	TwoThreeFourNode<T> nextNode = this->root;
+	bool found = false;
+	while (!found) {
+		currentNode = nextNode;
+		for (T element : currentNode.getKeys()) {
+			if element == value() {
+				found = true;
+			}
+		}
+		if (!found) {
+			//Case of a Leaf
+			if (currentNode.isLeaf) {
+				return NULL;
+			}
+			//Two node
+			else if (currentNode.getChildren().size() == 2) {
+				if (value < currentNode.getKeys()[0]) {
+					nextNode = currentNode.getChildren()[0];
+				}
+				else if (value > currentNode.getKeys()[0]){
+					nextNode = currentNode.getChildren()[1];
+				}
+			}
+			//Three node
+			else if (currentNode.getChildren().size() == 3) {
+				if (value < currentNode.getKeys()[0]) {
+					nextNode = currentNode.getChildren()[0];
+				}
+				else if (value > currentNode.getKeys()[1]) {
+					nextNode = currentNode.getChildren()[2];
+				}
+				else if (value > currentNode.getKeys()[0] && value < currentNode.getKeys()[1]) {
+					nextNode = currentNode.getChildren()[1];
+				}
+			}
+			//Four node
+			else if (currentNode.getChildren().size() == 4) {
+				if (value < currentNode.getKeys()[0]) {
+					nextNode = currentNode.getChildren()[0];
+				}
+				else if (value > currentNode.getKeys()[2]) {
+					nextNode = currentNode.getChildren()[3];
+				}
+				else if (value > currentNode.getKeys()[0] && value < currentNode.getKeys()[1]) {
+					nextNode = currentNode.getChildren()[1];
+				}
+				else if (value > currentNode.getKeys()[1] && value < currentNode.getKeys()[2]) {
+					nextNode = currentNode.getChildren()[2];
+				}
+			}
+		}
+		else {
+			return currentNode;
+		}
+			
+	}
 	return false;
 }
