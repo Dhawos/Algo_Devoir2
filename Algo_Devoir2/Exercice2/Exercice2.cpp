@@ -17,10 +17,11 @@ void parseText(TwoThreeFourTree<LegoPart> tree)
 {
 	ifstream fin;
 	fin.open("legoPieces.txt"); // open a file
-	if (!fin.good())
+	if (!fin.good()) {
 		std::cout << "error, file not found" << std::endl; // exit if file not found
-
+	}
 	// read each line of the file
+	
 	//while (!fin.eof())
 	//For testing purposes
 	int n = 0;
