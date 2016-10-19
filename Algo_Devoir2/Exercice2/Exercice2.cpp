@@ -7,10 +7,10 @@
 #include <string>
 #include <iostream>
 #include <fstream>
-#include <Windows.h>
 
 using std::ifstream;
-
+using std::cout;
+using std::endl;
 const int MAX_CHARS_PER_LINE = 512;
 const char* const DELIMITER = ",";
 
@@ -29,7 +29,7 @@ void parseText(TwoThreeFourTree<LegoPart> tree)
 		char buf[MAX_CHARS_PER_LINE];
 		fin.getline(buf, MAX_CHARS_PER_LINE);
 	}
-	while(n < 10)
+	while(n < 15)
 	{
 		// read an entire line into memory
 		char buf[MAX_CHARS_PER_LINE];
@@ -45,6 +45,7 @@ void parseText(TwoThreeFourTree<LegoPart> tree)
 		tree.insertValue(LegoPart(pieceId, description, category), tree.getRoot());
 		n++;
 	}
+	cout << tree << endl;
 }
 
 

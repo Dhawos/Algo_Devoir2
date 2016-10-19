@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <iostream>
 using std::vector;
 template<typename T>
 class TwoThreeFourNode
@@ -15,8 +16,11 @@ public:
 		this->children = vector<TwoThreeFourNode<T>*>();
 	};
 	virtual ~TwoThreeFourNode() {};
-	vector<T> getKeys() { return this->keys; };
-	vector<TwoThreeFourNode<T>*> getChildren() { return this->children; };
+	vector<T>& getKeys() { return this->keys; };
+	vector<TwoThreeFourNode<T>*>& getChildren() { return this->children; };
+	void pushKey(T key) {
+		this->keys.push_back(key);
+	}
 	void addChild(TwoThreeFourNode<T>* child) { 
 		this->children.push_back(child);
 		child->parent = this;
@@ -31,13 +35,13 @@ public:
 		return this->children.size() == 0;
 	}
 	bool is2Node() {
-		return this->children.size() == 2;
+		return this->keys.size() == 1;
 	}
 	bool is3Node() {
-		return this->children.size() == 3;
+		return this->keys.size() == 2;
 	}
 	bool is4Node() {
-		return this->children.size() == 4;
+		return this->keys.size() == 3;
 	}
 	bool operator==(const TwoThreeFourNode<T>& other)
 	{
@@ -47,5 +51,40 @@ public:
 			}
 		}
 		return true;
+	}
+
+	template <typename U> friend std::ostream& operator<<(std::ostream& stream, const TwoThreeFourNode<U> node) {
+		if (!node.children.size() == 0) {
+			//Case of a 2 node
+			if (node.keys.size() == 1) {
+				stream << *node.children[0];
+				stream << node.keys[0];
+				stream << *node.children[1];
+			}
+			//Case of a 3 node
+			else if(node.keys.size() == 2){
+				stream << *node.children[0];
+				stream << node.keys[0];
+				stream << *node.children[1];
+				stream << node.keys[1];
+				stream << *node.children[2];
+			}
+			//Case of a 4 node
+			else if (node.keys.size() == 2) {
+				stream << *node.children[0];
+				stream << node.keys[0];
+				stream << *node.children[1];
+				stream << node.keys[1];
+				stream << *node.children[2];
+				stream << node.keys[2];
+				stream << *node.children[3];
+			}
+		}
+		else {
+			for (U element : node.keys) {
+				stream << element;
+			}
+		}
+		return stream;
 	}
 };
