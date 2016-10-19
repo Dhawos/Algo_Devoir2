@@ -14,9 +14,9 @@ public:
 	void setPieceId(string newId);
 	void setDescription(string newDescription);
 	void setCategory(string newCategory);
-	bool &operator< (LegoPart legoPart);
-	bool &operator>(LegoPart legoPart);
-	bool &operator==(LegoPart legoPart);
+	bool operator< (LegoPart legoPart);
+	bool operator>(LegoPart legoPart);
+	bool operator==(LegoPart legoPart);
 
 private:
 	string pieceId;

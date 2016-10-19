@@ -48,19 +48,19 @@ void LegoPart::setCategory(string newCategory)
 	this->category = newCategory;
 }
 
-bool & LegoPart::operator<(LegoPart legoPart)
+bool LegoPart::operator<(LegoPart legoPart)
 {
 	bool answer = this->pieceId < legoPart.pieceId;
 	return answer;
 }
 
-bool & LegoPart::operator>(LegoPart legoPart)
+bool LegoPart::operator>(LegoPart legoPart)
 {
 	bool answer = this->pieceId > legoPart.pieceId;
 	return answer;
 }
 
-bool & LegoPart::operator==(LegoPart legoPart)
+bool LegoPart::operator==(LegoPart legoPart)
 {
 	bool answer = false;
 	if (this->pieceId == legoPart.pieceId) {
