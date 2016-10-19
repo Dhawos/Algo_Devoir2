@@ -78,6 +78,9 @@ inline void TwoThreeFourTree<T>::insertValue(const T & value, TwoThreeFourNode<T
 			}
 			this->nbNodes++;
 		}
+		if (currentNode.isRoot() && currentNode.isLeaf()) {
+			this->root.getKeys().push_back(value);
+		}
 		//Find the child whose interval contains the value to be inserted
 		TwoThreeFourNode<T>* childFound;
 		childFound = currentNode.getChildren()[getNextNodeToVisit(value, currentNode)];
