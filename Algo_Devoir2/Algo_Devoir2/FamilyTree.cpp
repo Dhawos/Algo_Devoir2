@@ -93,7 +93,6 @@ std::list<Node<Person>*> FamilyTree::printLineage_preOrder(Node<Person>* node, N
 {
 	if (node != NULL) {
 		if (node->getData() == ancestor->getData()) {
-			list.push_back(node);
 			*found = true;
 		}
 		if (!*found) {
@@ -119,7 +118,6 @@ std::list<Node<Person>*> FamilyTree::printLineage_postOrder(Node<Person>* node, 
 			list = printLineage_preOrder(node->getMother(), ancestor, list, found);
 		}
 		if (node->getData() == ancestor->getData()) {
-			list.push_back(node);
 			*found = true;
 		}
 		if (*found) {
