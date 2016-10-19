@@ -30,6 +30,15 @@ public:
 	bool isLeaf() {
 		return this->children.size() == 0;
 	}
+	bool is2Node() {
+		return this->children.size() == 2;
+	}
+	bool is3Node() {
+		return this->children.size() == 3;
+	}
+	bool is4Node() {
+		return this->children.size() == 4;
+	}
 	bool operator==(const TwoThreeFourNode<T>& other)
 	{
 		for (int i = 0; i < this->keys.size(); i++) {
