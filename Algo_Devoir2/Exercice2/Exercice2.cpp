@@ -22,6 +22,7 @@ void parseText(TwoThreeFourTree<LegoPart> tree)
 		std::cout << "error, file not found" << std::endl; // exit if file not found
 	}
 	// read each line of the file
+	
 	//while (!fin.eof())
 	//For testing purposes
 	int n = 0;
