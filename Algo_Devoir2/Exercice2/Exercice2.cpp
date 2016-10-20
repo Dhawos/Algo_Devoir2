@@ -15,8 +15,6 @@ using std::ifstream;
 using std::stringstream;
 using std::regex_search;
 
-//const int MAX_CHARS_PER_LINE = 512;
-//const char* const DELIMITER = ",";
 
 void parseText(TwoThreeFourTree<LegoPart> tree, int nbPieces)
 {
