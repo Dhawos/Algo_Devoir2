@@ -16,7 +16,7 @@ using std::stringstream;
 using std::regex_search;
 
 
-void parseText(TwoThreeFourTree<LegoPart> tree, int nbPieces)
+TwoThreeFourTree<LegoPart> parseText(TwoThreeFourTree<LegoPart>& tree, int nbPieces)
 {
 	ifstream file("legoPieces.txt");
 	string line;
@@ -69,14 +69,15 @@ void parseText(TwoThreeFourTree<LegoPart> tree, int nbPieces)
 			}
 		}
 	}
-
+	return tree;
 		
 }
 
 
 int main()
 {
-	TwoThreeFourTree<LegoPart> treeTest = TwoThreeFourTree<LegoPart>();
+	TwoThreeFourTree<LegoPart> treeTest =TwoThreeFourTree<LegoPart>();
+
 	string input;
 	int nbPieces;
 	bool answered = false;
@@ -98,8 +99,11 @@ int main()
 		}
 	}
 	std::cout << "you chose " << nbPieces << " pieces to be loaded" << std::endl;
-	parseText(treeTest, nbPieces);
 
+
+	treeTest = parseText(treeTest, nbPieces);
+
+	std::cout << treeTest << std::endl;
 	system("pause");
     return 0;
 }
