@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include <iostream>
+#include "RNNode.h"
 using std::vector;
 template<typename T>
 class TwoThreeFourNode
@@ -84,7 +85,58 @@ public:
 		}
 		return true;
 	}
+	RNNode<T> getEquivalentRNNode() {
+		RNNode<T>* newNode;
+		if (this->is2Node()) {
+			if (!this->isLeaf()) {
+				RNNode<T>* newLeftNode = this->children[0]->getEquivalentRNNode();
+				RNNode<T>* newRightNode = this->children[0]->getEquivalentRNNode();
+				newNode = new RNNode<T>(this->data, false, newLeftNode, newRightNode);
+				return newNode;
+			}
+			else {
+				newNode = new RNNode<T>(this->data, false, NULL, NULL);
+				return newNode;
+			}
+			
+		}
+		else if (this->is3Node()) {
+			if (!this->isLeaf()) {
+				RNNode<T>* a = this->children[0]->getEquivalentRNNode();
+				RNNode<T>* b = this->children[1]->getEquivalentRNNode();
+				RNNode<T>* c = this->children[2]->getEquivalentRNNode();
+				RNNode<T>* newLeftNode = new RNNode<T>(this->data[0], true, a, b);
+				newNode = new RNNode<T>(this->data[1], false, newLeftNode, c);
+				newNode = new RNNode<T>;
+				return newNode;
+			}
+			else {
+				RNNode<T>* newLeftNode = new RNNode<T>(this->data[0], true, NULL, NULL);
+				newNode = new RNNode<T>(this->data[1], false, newLeftNode, NULL);
+				newNode = new RNNode<T>;
+				return newNode;
+			}
+		}
+		else if (this->is4Node()) {
+			if (!this->isLeaf()) {
+				RNNode<T>* leftNewLeftNode = this->children[0]->getEquivalentRNNode();
+				RNNode<T>* leftNewRightNode = this->children[1]->getEquivalentRNNode();
+				RNNode<T>* rightNewLeftNode = this->children[2]->getEquivalentRNNode();
+				RNNode<T>* rightNewRightNode = this->children[3]->getEquivalentRNNode();
+				RNNode<T>* newLeftNode = new RNNode<T>(this->data[0], true, leftNewLeftNode, leftNewRightNode);
+				RNNode<T>* newRightNode = new RNNode<T>(this->data[2], true, rightNewLeftNode, RightNewRightNode);
+				newNode = new RNNode<T>(this->data[1], false, newLeftNode, newRightNode);
+				return newNode;
+			}
+			else {
+				RNNode<T>* newLeftNode = new RNNode<T>(this->data[0], true, NULL, NULL);
+				RNNode<T>* newRightNode = new RNNode<T>(this->data[2], true, NULL, NULL);
+				newNode = new RNNode<T>(this->data[1], false, newLeftNode, newRightNode);
+				return newNode;
+			}
 
+		}
+	}
 	template <typename U> friend std::ostream& operator<<(std::ostream& stream, const TwoThreeFourNode<U> node) {
 		if (!node.children.size() == 0) {
 			//Case of a 2 node

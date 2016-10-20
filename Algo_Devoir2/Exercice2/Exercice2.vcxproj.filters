@@ -36,6 +36,12 @@
     <ClInclude Include="LegoPart.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="RNNode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RNTree.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

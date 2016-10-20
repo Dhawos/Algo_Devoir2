@@ -147,6 +147,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LegoPart.h" />
+    <ClInclude Include="RNNode.h" />
+    <ClInclude Include="RNTree.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="TwoThreeFourNode.h" />
