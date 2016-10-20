@@ -60,6 +60,11 @@ bool LegoPart::operator>(LegoPart legoPart)
 	return answer;
 }
 
+bool LegoPart::operator>=(LegoPart legoPart)
+{
+	return this->pieceId > legoPart.pieceId || this->pieceId == legoPart.pieceId;
+}
+
 bool LegoPart::operator==(LegoPart legoPart)
 {
 	bool answer = false;
@@ -67,4 +72,10 @@ bool LegoPart::operator==(LegoPart legoPart)
 		answer = true;
 	}
 	return answer;
+}
+
+std::ostream& operator<<(std::ostream& stream, const LegoPart part)
+{
+	stream << part.pieceId << std::endl;
+	return stream;
 }

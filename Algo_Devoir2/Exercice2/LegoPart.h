@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <iostream>
 using std::string;
 
 class LegoPart
@@ -16,8 +17,9 @@ public:
 	void setCategory(string newCategory);
 	bool operator< (LegoPart legoPart);
 	bool operator>(LegoPart legoPart);
+	bool operator>=(LegoPart legoPart);
 	bool operator==(LegoPart legoPart);
-
+	friend std::ostream& operator<< (std::ostream&, const LegoPart);
 private:
 	string pieceId;
 	string description;
