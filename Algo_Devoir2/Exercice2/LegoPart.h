@@ -17,6 +17,7 @@ public:
 	void setCategory(string newCategory);
 	bool operator< (LegoPart legoPart);
 	bool operator>(LegoPart legoPart);
+	bool operator>=(LegoPart legoPart);
 	bool operator==(LegoPart legoPart);
 	friend std::ostream& operator<< (std::ostream&, const LegoPart);
 private:

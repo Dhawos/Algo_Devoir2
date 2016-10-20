@@ -48,16 +48,27 @@ void parseText(TwoThreeFourTree<LegoPart> tree)
 	}
 	cout << tree << endl << endl;
 
+	/*Testing search*/
 	LegoPart partToSearch = LegoPart("10019stk01", "Sticker for Set 10019 - (43274 / 4170393)", "Non - LEGO");
 
-	TwoThreeFourNode<LegoPart>* nodeFound = tree.search(partToSearch);
+	TwoThreeFourNode<LegoPart>* nodeFound = tree.search(partToSearch,tree.getRoot());
 	if (nodeFound != NULL) {
 		for (LegoPart part : nodeFound->getKeys()) {
-			cout << part.getPieceId() << " " << part.getCategory() << " " << part.getDescription() << endl;
+			cout << part.getPieceId() << " " << part.getCategory() << " " << part.getDescription() << endl << endl;
 		}
 	}
-	
-	
+
+	/*Testing delete*/
+	LegoPart partToDelete = LegoPart("10019stk01", "Sticker for Set 10019 - (43274 / 4170393)", "Non - LEGO");
+	cout << "Attempting to remove : " << partToDelete << endl;
+	tree.removeValue(partToDelete,tree.getRoot());
+	cout << tree << endl << endl;
+	partToDelete = LegoPart("0903", "Baseplate 16 x 24 with Set 080 Red House Print", "Baseplates");
+	cout << "Attempting to remove : " << partToDelete << endl;
+	tree.removeValue(partToDelete, tree.getRoot());
+	cout << tree << endl << endl;
+
+
 }
 
 

@@ -60,6 +60,11 @@ bool LegoPart::operator>(LegoPart legoPart)
 	return answer;
 }
 
+bool LegoPart::operator>=(LegoPart legoPart)
+{
+	return this->pieceId > legoPart.pieceId || this->pieceId == legoPart.pieceId;
+}
+
 bool LegoPart::operator==(LegoPart legoPart)
 {
 	bool answer = false;

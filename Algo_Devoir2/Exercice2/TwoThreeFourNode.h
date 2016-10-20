@@ -57,6 +57,9 @@ public:
 	TwoThreeFourNode<T>* getParent() {
 		return this->parent;
 	}
+	void setParent(TwoThreeFourNode<T>* parent) {
+		this->parent = parent;
+	}
 	bool isRoot() {
 		return this->parent == NULL;
 	}
