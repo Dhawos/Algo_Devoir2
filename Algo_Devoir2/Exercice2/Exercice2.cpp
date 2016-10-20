@@ -7,15 +7,20 @@
 #include <string>
 #include <iostream>
 #include <fstream>
+#include <Windows.h>
+#include <sstream>
+#include <list>
 
+using std::list;
 using std::ifstream;
-using std::cout;
-using std::endl;
+using std::stringstream;
+
 const int MAX_CHARS_PER_LINE = 512;
 const char* const DELIMITER = ",";
 
 void parseText(TwoThreeFourTree<LegoPart> tree)
 {
+	/*
 	ifstream fin;
 	fin.open("legoPieces.txt"); // open a file
 	if (!fin.good()) {
@@ -44,31 +49,39 @@ void parseText(TwoThreeFourTree<LegoPart> tree)
 		parseParts = strtok(NULL, DELIMITER);
 		string category = parseParts;
 		tree.insertValue(LegoPart(pieceId, description, category), tree.getRoot());
+		std::cout << "new LegoPart added, loop iteration : " << n << std::endl;
 		n++;
 	}
-	cout << tree << endl << endl;
+	*/
+	ifstream file("legoPieces.txt");
+	string line;
+	if (file)
+	{
+		string tempArray[10];
+		string token;
+		stringstream iss;
+		while (getline(file, line))
+		{
+			iss << line;
 
-	/*Testing search*/
-	LegoPart partToSearch = LegoPart("10019stk01", "Sticker for Set 10019 - (43274 / 4170393)", "Non - LEGO");
+			int i = 0;
+			while (getline(iss, token, ','))
+			{
+				tempArray[i] = token;
+				i++;
+			}
+			iss.clear();
+		}
+		string pieceId = tempArray[0];
+		if (tempArray[1][0] == '"') {
+			string tempString = tempArray[1];
+			int n = 2;
+			while (tempArray[n][tempArray[n].size()] != '"') {
+				n++;
+			}
 
-	TwoThreeFourNode<LegoPart>* nodeFound = tree.search(partToSearch,tree.getRoot());
-	if (nodeFound != NULL) {
-		for (LegoPart part : nodeFound->getKeys()) {
-			cout << part.getPieceId() << " " << part.getCategory() << " " << part.getDescription() << endl << endl;
 		}
 	}
-
-	/*Testing delete*/
-	LegoPart partToDelete = LegoPart("10019stk01", "Sticker for Set 10019 - (43274 / 4170393)", "Non - LEGO");
-	cout << "Attempting to remove : " << partToDelete << endl;
-	tree.removeValue(partToDelete,tree.getRoot());
-	cout << tree << endl << endl;
-	partToDelete = LegoPart("0903", "Baseplate 16 x 24 with Set 080 Red House Print", "Baseplates");
-	cout << "Attempting to remove : " << partToDelete << endl;
-	tree.removeValue(partToDelete, tree.getRoot());
-	cout << tree << endl << endl;
-
-
 }
 
 
