@@ -35,7 +35,6 @@ inline TwoThreeFourTree<T>::TwoThreeFourTree()
 template<typename T>
 inline TwoThreeFourTree<T>::~TwoThreeFourTree()
 {
-	//delete this->root;
 }
 
 template<typename T>
