@@ -46,7 +46,18 @@ void parseText(TwoThreeFourTree<LegoPart> tree)
 		tree.insertValue(LegoPart(pieceId, description, category), tree.getRoot());
 		n++;
 	}
-	cout << tree << endl;
+	cout << tree << endl << endl;
+
+	LegoPart partToSearch = LegoPart("10019stk01", "Sticker for Set 10019 - (43274 / 4170393)", "Non - LEGO");
+
+	TwoThreeFourNode<LegoPart>* nodeFound = tree.search(partToSearch);
+	if (nodeFound != NULL) {
+		for (LegoPart part : nodeFound->getKeys()) {
+			cout << part.getPieceId() << " " << part.getCategory() << " " << part.getDescription() << endl;
+		}
+	}
+	
+	
 }
 
 

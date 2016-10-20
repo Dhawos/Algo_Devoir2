@@ -1,4 +1,4 @@
-piece_id,descr,category
+﻿piece_id,descr,category
 
 0687b1,Set 0687 Activity Booklet 1,Non-LEGO
 0901,Baseplate 16 x 30 with Set 080 Yellow House Print,Baseplates

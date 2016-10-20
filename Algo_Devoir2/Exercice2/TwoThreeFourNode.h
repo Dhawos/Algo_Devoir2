@@ -14,16 +14,45 @@ public:
 		this->parent = NULL;
 		this->keys = vector<T>();
 		this->children = vector<TwoThreeFourNode<T>*>();
-	};
+	}
 	virtual ~TwoThreeFourNode() {};
-	vector<T>& getKeys() { return this->keys; };
-	vector<TwoThreeFourNode<T>*>& getChildren() { return this->children; };
+	vector<T>& getKeys() { return this->keys; }
+	vector<TwoThreeFourNode<T>*>& getChildren() { return this->children; }
 	void pushKey(T key) {
-		this->keys.push_back(key);
+		int index;
+		if (this->keys.size() == 0) {
+			index = 0;
+		}
+		else if (key < this->keys[0]) {
+			index = 0;
+		}
+		else if(key > this->keys[this->keys.size() - 1]){
+			index = this->keys.size();
+		}
+		else if(key > this->keys[0] && this->keys.size() > 1 && key < this->keys[1]) {
+			index = 1;
+		}
+		vector<T>::iterator it = this->keys.begin();
+		for (int i = 0; i < index; i++) {
+			++it;
+		}
+		this->keys.insert(it, key);
+		
 	}
 	void addChild(TwoThreeFourNode<T>* child) { 
 		this->children.push_back(child);
 		child->parent = this;
+	}
+	void removeChild(TwoThreeFourNode<T>* child) {
+		vector<TwoThreeFourNode<T>*>::iterator it;
+		for (it = this->children.begin();it != this->children.end(); ++it) {
+			if (*it == child) {
+				break;
+			}
+		}
+		this->children.erase(it);
+		delete child;
+		child = NULL;
 	}
 	TwoThreeFourNode<T>* getParent() {
 		return this->parent;
