@@ -8,14 +8,19 @@
 #include <iostream>
 #include <fstream>
 #include <Windows.h>
+#include <sstream>
+#include <list>
 
+using std::list;
 using std::ifstream;
+using std::stringstream;
 
 const int MAX_CHARS_PER_LINE = 512;
 const char* const DELIMITER = ",";
 
 void parseText(TwoThreeFourTree<LegoPart> tree)
 {
+	/*
 	ifstream fin;
 	fin.open("legoPieces.txt"); // open a file
 	if (!fin.good()) {
@@ -44,7 +49,38 @@ void parseText(TwoThreeFourTree<LegoPart> tree)
 		parseParts = strtok(NULL, DELIMITER);
 		string category = parseParts;
 		tree.insertValue(LegoPart(pieceId, description, category), tree.getRoot());
+		std::cout << "new LegoPart added, loop iteration : " << n << std::endl;
 		n++;
+	}
+	*/
+	ifstream file("legoPieces.txt");
+	string line;
+	if (file)
+	{
+		string tempArray[10];
+		string token;
+		stringstream iss;
+		while (getline(file, line))
+		{
+			iss << line;
+
+			int i = 0;
+			while (getline(iss, token, ','))
+			{
+				tempArray[i] = token;
+				i++;
+			}
+			iss.clear();
+		}
+		string pieceId = tempArray[0];
+		if (tempArray[1][0] == '"') {
+			string tempString = tempArray[1];
+			int n = 2;
+			while (tempArray[n][tempArray[n].size()] != '"') {
+				n++;
+			}
+
+		}
 	}
 }
 
