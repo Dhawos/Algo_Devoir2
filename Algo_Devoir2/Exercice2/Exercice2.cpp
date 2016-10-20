@@ -9,87 +9,98 @@
 #include <fstream>
 #include <Windows.h>
 #include <sstream>
-#include <list>
+#include <regex>
 
-using std::list;
 using std::ifstream;
 using std::stringstream;
+using std::regex_search;
 
-const int MAX_CHARS_PER_LINE = 512;
-const char* const DELIMITER = ",";
+//const int MAX_CHARS_PER_LINE = 512;
+//const char* const DELIMITER = ",";
 
-void parseText(TwoThreeFourTree<LegoPart> tree)
+void parseText(TwoThreeFourTree<LegoPart> tree, int nbPieces)
 {
-	/*
-	ifstream fin;
-	fin.open("legoPieces.txt"); // open a file
-	if (!fin.good()) {
-		std::cout << "error, file not found" << std::endl; // exit if file not found
-	}
-	// read each line of the file
-	
-	//while (!fin.eof())
-	//For testing purposes
-	int n = 0;
-	for (int i = 0; i < 2; i++) {
-		char buf[MAX_CHARS_PER_LINE];
-		fin.getline(buf, MAX_CHARS_PER_LINE);
-	}
-	while(n < 15)
-	{
-		// read an entire line into memory
-		char buf[MAX_CHARS_PER_LINE];
-		
-		fin.getline(buf, MAX_CHARS_PER_LINE);
-
-		const char* parseParts = strtok(buf, DELIMITER);
-		string pieceId = parseParts;
-		parseParts = strtok(NULL, DELIMITER);
-		string description = parseParts;
-		parseParts = strtok(NULL, DELIMITER);
-		string category = parseParts;
-		tree.insertValue(LegoPart(pieceId, description, category), tree.getRoot());
-		std::cout << "new LegoPart added, loop iteration : " << n << std::endl;
-		n++;
-	}
-	*/
 	ifstream file("legoPieces.txt");
 	string line;
 	if (file)
 	{
-		string tempArray[10];
-		string token;
-		stringstream iss;
-		while (getline(file, line))
-		{
-			iss << line;
-
-			int i = 0;
-			while (getline(iss, token, ','))
-			{
-				tempArray[i] = token;
-				i++;
-			}
-			iss.clear();
+		int n = 0;
+		if (nbPieces == 0) {
+			n = -1;
 		}
-		string pieceId = tempArray[0];
-		if (tempArray[1][0] == '"') {
-			string tempString = tempArray[1];
-			int n = 2;
-			while (tempArray[n][tempArray[n].size()] != '"') {
+		bool isFirst = true;
+		while (getline(file, line) && n < nbPieces)
+		{
+			std::cout << n << std::endl;
+			if (isFirst) {
+				isFirst = false;
+				getline(file, line);
+				getline(file, line);
+			}
+			
+			std::regex rgx("^((([^\",]*)|(\"[^\"]*\")),){2}(([^\",]*)|(\"[^\"]*\"))$");
+			std::smatch match;
+
+			std::cout << line << std::endl;
+			if (std::regex_search(line, match, rgx)) {
+				string pieceId;
+				string description = match[2];
+				string category = match[5];
+				string resizelineToPieceId = match[0];
+				resizelineToPieceId.resize(resizelineToPieceId.size() - description.size() - category.size() - 2);
+				pieceId = resizelineToPieceId;
+
+				if (pieceId[0] == '"') {
+					pieceId = pieceId.substr(1, pieceId.size() - 2);
+				}
+				if (description[0] == '"') {
+					description = description.substr(1, description.size() - 2);
+				}
+				if (category[0] == '"') {
+					category = category.substr(1, category.size() - 2);
+				}
+
+				std::cout << "pieceId : " << pieceId << std::endl;
+				std::cout << "description : " << description << std::endl;
+				std::cout << "category : " << category << std::endl;
+				tree.insertValue(LegoPart(pieceId, description, category), tree.getRoot());
+			}
+			std::cout << "-------------------" << std::endl;
+			if (nbPieces != 0) {
 				n++;
 			}
-
 		}
 	}
+
+		
 }
 
 
 int main()
 {
 	TwoThreeFourTree<LegoPart> treeTest = TwoThreeFourTree<LegoPart>();
-	parseText(treeTest);
-
+	string input;
+	int nbPieces;
+	bool answered = false;
+	while (!answered) {
+		std::cout << "how many pieces do you want to load in the tree ?" << std::endl;
+		std::cout << "if 0 then all pieces will be loaded" << std::endl;
+		std::getline(std::cin, input);
+		try {
+			nbPieces = std::stoi(input);
+			if (nbPieces >= 0 && nbPieces <= 20944) {
+				answered = true;
+			}
+			else {
+				std::cout << "Please enter an integer between 0 and 20944 (which is the maximum minus 1)" << std::endl;
+			}
+		}
+		catch (...) {
+			std::cout << "Please enter an integer between 0 and 20944 (which is the maximum minus 1)" << std::endl;
+		}
+	}
+	std::cout << "you chose " << nbPieces << " pieces to be loaded" << std::endl;
+	parseText(treeTest, nbPieces);
 
 	system("pause");
     return 0;
