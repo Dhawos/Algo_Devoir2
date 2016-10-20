@@ -4,6 +4,7 @@
 #include "stdafx.h"
 #include "LegoPart.h"
 #include "TwoThreeFourTree.h"
+#include "RNTree.h"
 #include <string>
 #include <iostream>
 #include <fstream>
@@ -104,6 +105,8 @@ int main()
 	treeTest = parseText(treeTest, nbPieces);
 
 	std::cout << treeTest << std::endl;
+
+	//RNTree<LegoPart> rnTree = RNTree<LegoPart>(treeTest);
 	system("pause");
     return 0;
 }
