@@ -150,7 +150,7 @@ public:
 				stream << *node.children[1];
 			}
 			//Case of a 3 node
-			else if(node.keys.size() == 1){
+			else if(node.keys.size() == 2){
 				stream << *node.children[0];
 				stream << node.keys[0];
 				stream << *node.children[1];
