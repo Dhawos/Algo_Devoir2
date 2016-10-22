@@ -5,7 +5,7 @@ template<typename T>
 class RNTree
 {
 private:
-	RNNode<T> root;
+	RNNode<T>* root;
 public:
 	RNTree(TwoThreeFourTree<T> otherTree)
 	{

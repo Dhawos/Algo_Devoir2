@@ -85,17 +85,17 @@ public:
 		}
 		return true;
 	}
-	RNNode<T> getEquivalentRNNode() {
+	RNNode<T>* getEquivalentRNNode() {
 		RNNode<T>* newNode;
 		if (this->is2Node()) {
 			if (!this->isLeaf()) {
 				RNNode<T>* newLeftNode = this->children[0]->getEquivalentRNNode();
 				RNNode<T>* newRightNode = this->children[0]->getEquivalentRNNode();
-				newNode = new RNNode<T>(this->data, false, newLeftNode, newRightNode);
+				newNode = new RNNode<T>(this->keys[0], false, newLeftNode, newRightNode);
 				return newNode;
 			}
 			else {
-				newNode = new RNNode<T>(this->data, false, NULL, NULL);
+				newNode = new RNNode<T>(this->keys[0], false, NULL, NULL);
 				return newNode;
 			}
 			
@@ -105,14 +105,14 @@ public:
 				RNNode<T>* a = this->children[0]->getEquivalentRNNode();
 				RNNode<T>* b = this->children[1]->getEquivalentRNNode();
 				RNNode<T>* c = this->children[2]->getEquivalentRNNode();
-				RNNode<T>* newLeftNode = new RNNode<T>(this->data[0], true, a, b);
-				newNode = new RNNode<T>(this->data[1], false, newLeftNode, c);
+				RNNode<T>* newLeftNode = new RNNode<T>(this->keys[0], true, a, b);
+				newNode = new RNNode<T>(this->keys[1], false, newLeftNode, c);
 				newNode = new RNNode<T>;
 				return newNode;
 			}
 			else {
-				RNNode<T>* newLeftNode = new RNNode<T>(this->data[0], true, NULL, NULL);
-				newNode = new RNNode<T>(this->data[1], false, newLeftNode, NULL);
+				RNNode<T>* newLeftNode = new RNNode<T>(this->keys[0], true, NULL, NULL);
+				newNode = new RNNode<T>(this->keys[1], false, newLeftNode, NULL);
 				newNode = new RNNode<T>;
 				return newNode;
 			}
@@ -123,15 +123,15 @@ public:
 				RNNode<T>* leftNewRightNode = this->children[1]->getEquivalentRNNode();
 				RNNode<T>* rightNewLeftNode = this->children[2]->getEquivalentRNNode();
 				RNNode<T>* rightNewRightNode = this->children[3]->getEquivalentRNNode();
-				RNNode<T>* newLeftNode = new RNNode<T>(this->data[0], true, leftNewLeftNode, leftNewRightNode);
-				RNNode<T>* newRightNode = new RNNode<T>(this->data[2], true, rightNewLeftNode, RightNewRightNode);
-				newNode = new RNNode<T>(this->data[1], false, newLeftNode, newRightNode);
+				RNNode<T>* newLeftNode = new RNNode<T>(this->keys[0], true, leftNewLeftNode, leftNewRightNode);
+				RNNode<T>* newRightNode = new RNNode<T>(this->keys[2], true, rightNewLeftNode, rightNewRightNode);
+				newNode = new RNNode<T>(this->keys[1], false, newLeftNode, newRightNode);
 				return newNode;
 			}
 			else {
-				RNNode<T>* newLeftNode = new RNNode<T>(this->data[0], true, NULL, NULL);
-				RNNode<T>* newRightNode = new RNNode<T>(this->data[2], true, NULL, NULL);
-				newNode = new RNNode<T>(this->data[1], false, newLeftNode, newRightNode);
+				RNNode<T>* newLeftNode = new RNNode<T>(this->keys[0], true, NULL, NULL);
+				RNNode<T>* newRightNode = new RNNode<T>(this->keys[2], true, NULL, NULL);
+				newNode = new RNNode<T>(this->keys[1], false, newLeftNode, newRightNode);
 				return newNode;
 			}
 
