@@ -116,8 +116,7 @@ public:
 				return newNode;
 			}
 			else {
-				//RNNode<T>* newLeftNode = new RNNode<T>(this->keys[0], true, NULL, NULL);
-				RNNode<T>* newLeftNode = new RNNode<T>(this->keys[0], false, NULL, NULL);
+				RNNode<T>* newLeftNode = new RNNode<T>(this->keys[0], true, NULL, NULL);
 				newNode = new RNNode<T>(this->keys[1], false, newLeftNode, NULL);
 				return newNode;
 			}
@@ -134,10 +133,8 @@ public:
 				return newNode;
 			}
 			else {
-				//RNNode<T>* newLeftNode = new RNNode<T>(this->keys[0], true, NULL, NULL);
-				//RNNode<T>* newRightNode = new RNNode<T>(this->keys[2], true, NULL, NULL);
-				RNNode<T>* newLeftNode = new RNNode<T>(this->keys[0], false, NULL, NULL);
-				RNNode<T>* newRightNode = new RNNode<T>(this->keys[2], false, NULL, NULL);
+				RNNode<T>* newLeftNode = new RNNode<T>(this->keys[0], true, NULL, NULL);
+				RNNode<T>* newRightNode = new RNNode<T>(this->keys[2], true, NULL, NULL);
 				newNode = new RNNode<T>(this->keys[1], false, newLeftNode, newRightNode);
 				return newNode;
 			}
@@ -161,7 +158,7 @@ public:
 				stream << *node.children[2];
 			}
 			//Case of a 4 node
-			else if (node.keys.size() == 2) {
+			else if (node.keys.size() == 3) {
 				stream << *node.children[0];
 				stream << node.keys[0];
 				stream << *node.children[1];

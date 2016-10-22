@@ -53,19 +53,8 @@ public:
 			newNode->pushKey(this->data);
 			return newNode;
 		}
-		else if (this->rightchild == NULL) {
-			newNode = new TwoThreeFourNode<T>();
-			TwoThreeFourNode<T>* newLeftNode = this->leftchild->getEquivalentTwoThreeFourNode();
-			newNode->pushKey(this->data);
-			newNode->addChild(newLeftNode);
-			return newNode;
-		}
-		else if (this->leftchild == NULL) {
-			newNode = new TwoThreeFourNode<T>();
-			TwoThreeFourNode<T>* newRightNode = this->rightchild->getEquivalentTwoThreeFourNode();
-			newNode->pushKey(this->data);
-			newNode->addChild(newRightNode);
-			return newNode;
+		else if (this->rightchild == NULL || this->leftchild == NULL) {
+			return NULL;
 		}
 		else if (this->leftchild->isBlack() && this->rightchild->isBlack()) {
 			newNode = new TwoThreeFourNode<T>();
@@ -97,6 +86,17 @@ public:
 			TwoThreeFourNode<T>* newFirstNode = this->leftchild->leftchild->getEquivalentTwoThreeFourNode();
 			TwoThreeFourNode<T>* newSecondNode = this->leftchild->rightchild->getEquivalentTwoThreeFourNode();
 			TwoThreeFourNode<T>* newThirdNode = this->rightchild->getEquivalentTwoThreeFourNode();
+			if (newThirdNode == NULL) {
+				newThirdNode = new TwoThreeFourNode<T>();
+				if (this->rightchild->leftchild == NULL) {
+					newThirdNode->pushKey(this->rightchild->data);
+					newThirdNode->pushKey(this->rightchild->leftchild->data);
+				}
+				else if (this->rightchild->rightchild == NULL) {
+					newThirdNode->pushKey(this->rightchild->leftchild->data);
+					newThirdNode->pushKey(this->rightchild->data);
+				}
+			}
 			newNode->pushKey(this->leftchild->getData());
 			newNode->pushKey(this->data);
 			newNode->addChild(newFirstNode);
@@ -109,6 +109,17 @@ public:
 			TwoThreeFourNode<T>* newFirstNode = this->leftchild->getEquivalentTwoThreeFourNode();
 			TwoThreeFourNode<T>* newSecondNode = this->rightchild->leftchild->getEquivalentTwoThreeFourNode();
 			TwoThreeFourNode<T>* newThirdNode = this->rightchild->rightchild->getEquivalentTwoThreeFourNode();
+			if (newFirstNode == NULL) {
+				newFirstNode = new TwoThreeFourNode<T>();
+				if (this->leftchild->leftchild == NULL) {
+					newThirdNode->pushKey(this->rightchild->data);
+					newThirdNode->pushKey(this->rightchild->leftchild->data);
+				}
+				else if (this->leftchild->rightchild == NULL) {
+					newThirdNode->pushKey(this->rightchild->leftchild->data);
+					newThirdNode->pushKey(this->rightchild->data);
+				}
+			}
 			newNode->pushKey(this->data);
 			newNode->pushKey(this->rightchild->data);
 			newNode->addChild(newFirstNode);
