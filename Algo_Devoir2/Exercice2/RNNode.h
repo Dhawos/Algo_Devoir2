@@ -42,12 +42,12 @@ public:
 		return this->rightchild;
 	}
 	template <typename U> friend std::ostream& operator<<(std::ostream& stream, const RNNode<U> node) {
-		if (*node.getLeftChild() != NULL) {
-			stream << *node.getLeftChild();
+		if (node.leftchild != NULL) {
+			stream << *node.leftchild;
 		}
-		stream << *node.getData();
-		if (*node.getRightChild() != NULL) {
-			stream << *node.getRightChild();
+		stream << node.data;
+		if (node.rightchild != NULL) {
+			stream << *node.rightchild;
 		}
 		return stream;
 	}
