@@ -15,6 +15,9 @@ public:
 	{
 
 	}
+	RNNode<T>* getRoot() {
+		return this->root;
+	}
 	template <typename U> friend std::ostream& operator<<(std::ostream& stream, const RNTree<U> tree) {
 		stream << *(tree.root);
 		return stream;

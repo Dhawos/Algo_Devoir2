@@ -16,6 +16,11 @@ public:
 		this->keys = vector<T>();
 		this->children = vector<TwoThreeFourNode<T>*>();
 	}
+	TwoThreeFourNode(TwoThreeFourNode<T>* parent, vector<TwoThreeFourNode<T>*> children, vector<T> keys) {
+		this->parent = NULL;
+		this->keys = vector<T>();
+		this->children = vector<TwoThreeFourNode<T>*>();
+	}
 	virtual ~TwoThreeFourNode() {};
 	vector<T>& getKeys() { return this->keys; }
 	vector<TwoThreeFourNode<T>*>& getChildren() { return this->children; }

@@ -1,6 +1,7 @@
 #pragma once
 #include "TwoThreeFourNode.h"
 #include <iostream>
+#include "RNTree.h"
 
 template<typename T>
 class TwoThreeFourTree
@@ -10,6 +11,7 @@ private:
 	TwoThreeFourNode<T>* root;
 public:
 	TwoThreeFourTree();
+	TwoThreeFourTree(RNTree<T> other);
 	~TwoThreeFourTree();
 	bool isEmpty() const;
 	TwoThreeFourNode<T>* getRoot();
@@ -31,6 +33,12 @@ inline TwoThreeFourTree<T>::TwoThreeFourTree()
 	nbNodes = 0;
 }
 
+template<typename T>
+inline TwoThreeFourTree<T>::TwoThreeFourTree(RNTree<T> other)
+{
+	nbNodes = 0;
+	this->root = other.getRoot()->getEquivalentTwoThreeFourNode();
+}
 
 template<typename T>
 inline TwoThreeFourTree<T>::~TwoThreeFourTree()
