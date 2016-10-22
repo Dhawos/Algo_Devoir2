@@ -108,6 +108,9 @@ int main()
 
 	RNTree<LegoPart> rnTree = RNTree<LegoPart>(treeTest);
 	std::cout << rnTree << std::endl;
+
+	TwoThreeFourTree<LegoPart> newTree = TwoThreeFourTree<LegoPart>(rnTree);
+	std::cout << newTree << std::endl;
 	system("pause");
     return 0;
 }

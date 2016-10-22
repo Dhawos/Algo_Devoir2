@@ -1,8 +1,8 @@
 #pragma once
 #include "TwoThreeFourNode.h"
 #include <iostream>
-#include "RNTree.h"
-
+template <class T>
+class RNTree;
 template<typename T>
 class TwoThreeFourTree
 {
@@ -26,6 +26,7 @@ public:
 		return stream;
 	}
 };
+
 
 template<typename T>
 inline TwoThreeFourTree<T>::TwoThreeFourTree()

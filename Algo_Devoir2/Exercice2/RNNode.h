@@ -1,5 +1,6 @@
 #pragma once
-#include "TwoThreeFourNode.h"
+template <class T>
+class TwoThreeFourNode;
 template<typename T>
 class RNNode
 {
@@ -21,7 +22,31 @@ public:
 		this->rightchild = rightchild;
 	}
 	virtual ~RNNode() {};
-	TwoThreeFourNode<T>* getEquivalent234Node(){
+	bool isRed() {
+		return this->red;
+	}
+	bool isBlack() {
+		return !this->red;
+	}
+	bool isLeaf() {
+		return (this->leftchild == NULL && this->rightchild == NULL);
+	}
+	T getData() {
+		return this->data;
+	}
+	void setLeftChild(RNNode<T>* node) {
+		this->leftchild = node;
+	}
+	void setRightChild(RNNode<T>* node) {
+		this->right = node;
+	}
+	RNNode<T>* getLeftChild() {
+		return this->leftchild;
+	}
+	RNNode<T>* getRightChild() {
+		return this->rightchild;
+	}
+	TwoThreeFourNode<T>* getEquivalentTwoThreeFourNode() {
 		TwoThreeFourNode<T>* newNode;
 		if (this->isLeaf()) {
 			newNode = new TwoThreeFourNode<T>();
@@ -59,8 +84,8 @@ public:
 			TwoThreeFourNode<T>* newThirdNode = this->rightchild->leftchild->getEquivalentTwoThreeFourNode();
 			TwoThreeFourNode<T>* newFourthNode = this->rightchild->rightchild->getEquivalentTwoThreeFourNode();
 			newNode->pushKey(this->data);
-			newNode->pushKey(this->leftChild->data);
-			newNode->pushKey(this->rightChild->data);
+			newNode->pushKey(this->leftchild->data);
+			newNode->pushKey(this->rightchild->data);
 			newNode->addChild(newFirstNode);
 			newNode->addChild(newSecondNode);
 			newNode->addChild(newThirdNode);
@@ -72,7 +97,7 @@ public:
 			TwoThreeFourNode<T>* newFirstNode = this->leftchild->leftchild->getEquivalentTwoThreeFourNode();
 			TwoThreeFourNode<T>* newSecondNode = this->leftchild->rightchild->getEquivalentTwoThreeFourNode();
 			TwoThreeFourNode<T>* newThirdNode = this->rightchild->getEquivalentTwoThreeFourNode();
-			newNode->pushKey(this->leftChild->data);
+			newNode->pushKey(this->leftchild->getData());
 			newNode->pushKey(this->data);
 			newNode->addChild(newFirstNode);
 			newNode->addChild(newSecondNode);
@@ -81,7 +106,7 @@ public:
 		}
 		else if (this->leftchild->isBlack() && this->rightchild->isRed()) {
 			newNode = new TwoThreeFourNode<T>();
-			TwoThreeFourNode<T>* newFirstNode = this->leftchild->dgetEquivalentTwoThreeFourNode();
+			TwoThreeFourNode<T>* newFirstNode = this->leftchild->getEquivalentTwoThreeFourNode();
 			TwoThreeFourNode<T>* newSecondNode = this->rightchild->leftchild->getEquivalentTwoThreeFourNode();
 			TwoThreeFourNode<T>* newThirdNode = this->rightchild->rightchild->getEquivalentTwoThreeFourNode();
 			newNode->pushKey(this->data);
@@ -91,30 +116,6 @@ public:
 			newNode->addChild(newThirdNode);
 			return newNode;
 		}
-	}
-	bool isRed() {
-		return this->red;
-	}
-	bool isBlack() {
-		return !this->red;
-	}
-	bool isLeaf() {
-		return (this->leftchild == NULL && this->rightchild == NULL);
-	}
-	T getData() {
-		return this->data;
-	}
-	void setLeftChild(RNNode<T>* node) {
-		this->leftchild = node;
-	}
-	void setRightChild(RNNode<T>* node) {
-		this->right = node;
-	}
-	RNNode<T>* getLeftChild() {
-		return this->leftchild;
-	}
-	RNNode<T>* getRightChild() {
-		return this->rightchild;
 	}
 	template <typename U> friend std::ostream& operator<<(std::ostream& stream, const RNNode<U> node) {
 		if (node.leftchild != NULL) {

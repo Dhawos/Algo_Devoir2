@@ -1,8 +1,9 @@
 #pragma once
 #include <vector>
 #include <iostream>
-#include "RNNode.h"
 using std::vector;
+template <class T>
+class RNNode;
 template<typename T>
 class TwoThreeFourNode
 {
@@ -115,7 +116,8 @@ public:
 				return newNode;
 			}
 			else {
-				RNNode<T>* newLeftNode = new RNNode<T>(this->keys[0], true, NULL, NULL);
+				//RNNode<T>* newLeftNode = new RNNode<T>(this->keys[0], true, NULL, NULL);
+				RNNode<T>* newLeftNode = new RNNode<T>(this->keys[0], false, NULL, NULL);
 				newNode = new RNNode<T>(this->keys[1], false, newLeftNode, NULL);
 				return newNode;
 			}
@@ -132,8 +134,10 @@ public:
 				return newNode;
 			}
 			else {
-				RNNode<T>* newLeftNode = new RNNode<T>(this->keys[0], true, NULL, NULL);
-				RNNode<T>* newRightNode = new RNNode<T>(this->keys[2], true, NULL, NULL);
+				//RNNode<T>* newLeftNode = new RNNode<T>(this->keys[0], true, NULL, NULL);
+				//RNNode<T>* newRightNode = new RNNode<T>(this->keys[2], true, NULL, NULL);
+				RNNode<T>* newLeftNode = new RNNode<T>(this->keys[0], false, NULL, NULL);
+				RNNode<T>* newRightNode = new RNNode<T>(this->keys[2], false, NULL, NULL);
 				newNode = new RNNode<T>(this->keys[1], false, newLeftNode, newRightNode);
 				return newNode;
 			}
