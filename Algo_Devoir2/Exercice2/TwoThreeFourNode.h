@@ -107,13 +107,11 @@ public:
 				RNNode<T>* c = this->children[2]->getEquivalentRNNode();
 				RNNode<T>* newLeftNode = new RNNode<T>(this->keys[0], true, a, b);
 				newNode = new RNNode<T>(this->keys[1], false, newLeftNode, c);
-				newNode = new RNNode<T>;
 				return newNode;
 			}
 			else {
 				RNNode<T>* newLeftNode = new RNNode<T>(this->keys[0], true, NULL, NULL);
 				newNode = new RNNode<T>(this->keys[1], false, newLeftNode, NULL);
-				newNode = new RNNode<T>;
 				return newNode;
 			}
 		}
