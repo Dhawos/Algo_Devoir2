@@ -8,6 +8,11 @@ private:
 	RNNode<T>* leftchild;
 	RNNode<T>* rightchild;
 public:
+	RNNode() {
+		this->red = false;
+		this->leftchild = NULL;
+		this->rightchild = NULL;
+	}
 	RNNode(T data, bool isRed, RNNode<T>* leftchild = NULL, RNNode<T>* rightchild = NULL) {
 		this->data = data;
 		this->red = isRed;
@@ -35,6 +40,16 @@ public:
 	}
 	RNNode<T>* getRightChild() {
 		return this->rightchild;
+	}
+	template <typename U> friend std::ostream& operator<<(std::ostream& stream, const RNNode<U> node) {
+		if (node.getLeftChild() != NULL) {
+			stream << node.getLeftChild();
+		}
+		stream << node.getData();
+		if (node.getRightChild() != NULL) {
+			stream << node.getRightChild();
+		}
+		return stream;
 	}
 };
 

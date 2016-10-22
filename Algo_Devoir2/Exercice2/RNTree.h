@@ -11,10 +11,13 @@ public:
 	{
 		this->root = otherTree.getRoot()->getEquivalentRNNode();
 	}
-
 	virtual ~RNTree()
 	{
 
+	}
+	template <typename U> friend std::ostream& operator<<(std::ostream& stream, const RNTree<U> tree) {
+		stream << *(tree.root);
+		return stream;
 	}
 };
 
