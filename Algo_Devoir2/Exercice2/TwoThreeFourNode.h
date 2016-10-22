@@ -90,7 +90,7 @@ public:
 		if (this->is2Node()) {
 			if (!this->isLeaf()) {
 				RNNode<T>* newLeftNode = this->children[0]->getEquivalentRNNode();
-				RNNode<T>* newRightNode = this->children[0]->getEquivalentRNNode();
+				RNNode<T>* newRightNode = this->children[1]->getEquivalentRNNode();
 				newNode = new RNNode<T>(this->keys[0], false, newLeftNode, newRightNode);
 				return newNode;
 			}
