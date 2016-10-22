@@ -107,6 +107,9 @@ int main()
 	std::cout << treeTest << std::endl;
 
 	RNTree<LegoPart> rnTree = RNTree<LegoPart>(treeTest);
+
+	std::cout << rnTree << std::endl;
+
 	system("pause");
     return 0;
 }
