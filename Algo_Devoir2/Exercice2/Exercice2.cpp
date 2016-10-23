@@ -104,12 +104,16 @@ int main()
 
 	treeTest = parseText(treeTest, nbPieces);
 
+	std::cout << "Our 2-3-4 tree : " << std::endl;
 	std::cout << treeTest << std::endl;
 
 	RNTree<LegoPart> rnTree = RNTree<LegoPart>(treeTest);
+	std::cout << "Our tree transormed in Black-Red tree : " << std::endl;
 	std::cout << rnTree << std::endl;
 
 	TwoThreeFourTree<LegoPart> newTree = TwoThreeFourTree<LegoPart>(rnTree);
+
+	std::cout << "Same tree, back again as a 2-3-4 tree : " << std::endl;
 	std::cout << newTree << std::endl;
 	system("pause");
     return 0;
