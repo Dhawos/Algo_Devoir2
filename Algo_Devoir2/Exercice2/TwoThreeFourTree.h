@@ -259,6 +259,7 @@ inline void TwoThreeFourTree<T>::removeValue(const T & value, TwoThreeFourNode<T
 				else {//Special operation if we are at root
 					TwoThreeFourNode<T>* newRoot = new TwoThreeFourNode<T>();
 					if (siblingLeft != NULL) {
+						newRoot->pushKey(currentNode->getKeys()[0]);
 						newRoot->pushKey(siblingLeft->getKeys()[0]);
 						newRoot->pushKey(nextNode->getKeys()[0]);
 						if (!siblingLeft->isLeaf()) {
@@ -270,6 +271,7 @@ inline void TwoThreeFourTree<T>::removeValue(const T & value, TwoThreeFourNode<T
 						delete siblingLeft;
 					}
 					else if (siblingRight != NULL) {
+						newRoot->pushKey(currentNode->getKeys()[0]);
 						newRoot->pushKey(nextNode->getKeys()[0]);
 						newRoot->pushKey(siblingRight->getKeys()[0]);
 						if (!siblingRight->isLeaf()) {
