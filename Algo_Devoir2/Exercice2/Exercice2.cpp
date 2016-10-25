@@ -118,7 +118,7 @@ int main()
 	std::cout << "Same tree, back again as a 2-3-4 tree : " << std::endl;
 	std::cout << newTree << std::endl;
 
-
+	/*
 	string inputDelete;
 	int positionNodeToDelete;
 	bool answeredDelete = false;
@@ -145,6 +145,17 @@ int main()
 		}
 	}
 	std::cout << "you chose to delete the node in position : " << positionNodeToDelete << std::endl;
+	*/
+	std::cout << "Let's add a piece with the index '01337' " << std::endl;
+	LegoPart newPiece = LegoPart("01337", "this is a test piece", "this a test category");
+	treeTest.insertValue(newPiece, treeTest.getRoot());
+	std::cout << treeTest << std::endl;
+	std::cout << "Number of nodes : " << treeTest.getNbNodes() << std::endl;
+
+	std::cout << "Let's remove this piece now" << std::endl;
+	treeTest.removeValue(newPiece, treeTest.getRoot(), NULL);
+	std::cout << treeTest << std::endl;
+	std::cout << "Number of nodes : " << treeTest.getNbNodes() << std::endl;
 
 	//We need to remove the node in position $positionNodeToDelete
 	//std::cout << newTree << std::endl;
