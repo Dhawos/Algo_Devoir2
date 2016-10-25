@@ -118,49 +118,25 @@ int main()
 	std::cout << "Same tree, back again as a 2-3-4 tree : " << std::endl;
 	std::cout << newTree << std::endl;
 
-	/*
-	string inputDelete;
-	int positionNodeToDelete;
-	bool answeredDelete = false;
-	while (!answeredDelete) {
-		std::cout << "which node do you want to delete ?" << std::endl;
-		if (nbPieces != 0) {
-			std::cout << "if 1, it will delete the first (root) node. Your number must be between 1 and " << nbPieces << std::endl;
-		}
-		else {
-			std::cout << "if 1, it will delete the first (root) node. Your number must be between 1 and 20945" << std::endl;
-		}
-		std::getline(std::cin, input);
-		try {
-			positionNodeToDelete = std::stoi(input);
-			if (positionNodeToDelete < nbPieces && positionNodeToDelete > 0) {
-				answeredDelete = true;
-			}
-			else {
-				std::cout << "Please enter an integer between 1 and the size of the tree" << std::endl;
-			}
-		}
-		catch (...) {
-			std::cout << "Please enter an integer between 0 and the size of the tree" << std::endl;
-		}
-	}
-	std::cout << "you chose to delete the node in position : " << positionNodeToDelete << std::endl;
-	*/
-	std::cout << "Let's add a piece with the index '01337' " << std::endl;
-	LegoPart newPiece = LegoPart("01337", "this is a test piece", "this a test category");
+
+	std::cout << "Let's add a piece with the index '1337' " << std::endl;
+	LegoPart newPiece = LegoPart("1337", "this is a test piece", "this a test category");
 	treeTest.insertValue(newPiece, treeTest.getRoot());
 	std::cout << treeTest << std::endl;
 	std::cout << "Number of nodes : " << treeTest.getNbNodes() << std::endl;
+
+	std::cout << "let's search this piece" << std::endl;
+	TwoThreeFourNode<LegoPart> nodeLego = *treeTest.search(newPiece, treeTest.getRoot());
+	std::cout << "here is the node where we found the piece : " << std::endl;
+	std::cout << nodeLego << std::endl;
+
 
 	std::cout << "Let's remove this piece now" << std::endl;
 	treeTest.removeValue(newPiece, treeTest.getRoot(), NULL);
 	std::cout << treeTest << std::endl;
 	std::cout << "Number of nodes : " << treeTest.getNbNodes() << std::endl;
 
-	//We need to remove the node in position $positionNodeToDelete
-	//std::cout << newTree << std::endl;
 
-	//We need to ask for searching a value
 	system("pause");
     return 0;
 }
