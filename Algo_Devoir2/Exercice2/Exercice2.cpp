@@ -106,7 +106,9 @@ int main()
 
 	std::cout << "Our 2-3-4 tree : " << std::endl;
 	std::cout << treeTest << std::endl;
+	std::cout << "Number of nodes : " << treeTest.getNbNodes() << std::endl;
 
+	std::cout << "------------------------" << std::endl;
 	RNTree<LegoPart> rnTree = RNTree<LegoPart>(treeTest);
 	std::cout << "Our tree transormed in Black-Red tree : " << std::endl;
 	std::cout << rnTree << std::endl;
@@ -115,6 +117,39 @@ int main()
 
 	std::cout << "Same tree, back again as a 2-3-4 tree : " << std::endl;
 	std::cout << newTree << std::endl;
+
+
+	string inputDelete;
+	int positionNodeToDelete;
+	bool answeredDelete = false;
+	while (!answeredDelete) {
+		std::cout << "which node do you want to delete ?" << std::endl;
+		if (nbPieces != 0) {
+			std::cout << "if 1, it will delete the first (root) node. Your number must be between 1 and " << nbPieces << std::endl;
+		}
+		else {
+			std::cout << "if 1, it will delete the first (root) node. Your number must be between 1 and 20945" << std::endl;
+		}
+		std::getline(std::cin, input);
+		try {
+			positionNodeToDelete = std::stoi(input);
+			if (positionNodeToDelete < nbPieces && positionNodeToDelete > 0) {
+				answeredDelete = true;
+			}
+			else {
+				std::cout << "Please enter an integer between 1 and the size of the tree" << std::endl;
+			}
+		}
+		catch (...) {
+			std::cout << "Please enter an integer between 0 and the size of the tree" << std::endl;
+		}
+	}
+	std::cout << "you chose to delete the node in position : " << positionNodeToDelete << std::endl;
+
+	//We need to remove the node in position $positionNodeToDelete
+	//std::cout << newTree << std::endl;
+
+	//We need to ask for searching a value
 	system("pause");
     return 0;
 }
